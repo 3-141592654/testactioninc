@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: Run style.sh
         run: |
-          bash ./style.sh
+          bash /style.sh
           echo "Done"
