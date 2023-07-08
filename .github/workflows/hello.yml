@@ -1,7 +1,7 @@
 name: Hello In C
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
   push:
   pull-request:
     branches:
@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: gekkowrldtest/helloworldinc
-      
+
