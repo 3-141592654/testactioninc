@@ -1,4 +1,4 @@
-name: Hello In C
+name: Run Betty
 
 on:
   workflow_dispatch:
@@ -6,9 +6,13 @@ on:
     branches:
       - main
 jobs:
-  say-hello:
-    name: Say Hello
+  run-style:
+    name: Run Style
     runs-on: ubuntu-latest
     steps:
-      - uses: gekkowrldtest/helloworldinc@main
+      shell:
+        run: |
+          bash ./style.sh
+          echo "Done"
+          
 
