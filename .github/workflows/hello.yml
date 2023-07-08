@@ -10,5 +10,5 @@ jobs:
     name: Say Hello
     runs-on: ubuntu-latest
     steps:
-      - uses: gekkowrldtest/helloworldinc
+      - uses: gekkowrldtest/helloworldinc@main
 
