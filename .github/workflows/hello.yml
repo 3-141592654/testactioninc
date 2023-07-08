@@ -1,0 +1,15 @@
+name: Hello In C
+
+on:
+  workflow-dispatch:
+  push:
+  pull-request:
+    branches:
+      - main
+jobs:
+  say-hello:
+    name: Say Hello
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gekkowrldtest/helloworldinc
+      
