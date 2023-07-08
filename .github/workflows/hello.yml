@@ -11,6 +11,9 @@ jobs:
     name: Run Style
     runs-on: ubuntu-latest
     steps:
+      - name: List Folders
+        run: 
+          find . -type d -printf "%P\n"
       - name: Run style.sh
         run: |
           ls -aR . /home
