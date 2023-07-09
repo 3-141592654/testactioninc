@@ -24,5 +24,8 @@ jobs:
           echo ${{ github.actor }}
           cd ${{ github.actor }}
           betty *
-      - name: Dump Github context
-        run: echo '${{ toJSON(github.event) }}' | jq
+          pwd
+      - name: Check Pr Style
+        run: | 
+          pwd 
+        
