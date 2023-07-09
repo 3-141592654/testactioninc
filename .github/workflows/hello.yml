@@ -12,10 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build Betty
+        id: build-betty
         run: |
           git clone https://github.com/alx-tools/Betty
-          git clone ${{ github.repositoryUrl }} ${{ github.actor }}
           cd Betty
           sudo ./install.sh
+          cd ..
+          git clone ${{ github.repositoryUrl }} ${{ github.actor }}
+  list:
+    needs: run-style
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Files
+        run: |
           cd ${{ github.actor }}
-          ls
+          ls -a
