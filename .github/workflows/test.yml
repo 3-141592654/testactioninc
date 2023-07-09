@@ -15,4 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Request Opened Action
-        run: echo "Pull Request opened action"
+        run: |
+          git clone https://github.com/alx-tools/Betty.git
+          cd Betty
+          ./install
+          cd ..
+          git clone https://github.com/${{ github.repository }}.git ${{ github.actor }}
+          git checkout ${{ github.event.pull_request.head.ref }}
+          cd ${{ github.actor }}
+          betty *
+          
