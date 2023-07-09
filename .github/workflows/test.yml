@@ -18,7 +18,7 @@ jobs:
         run: |
           git clone https://github.com/alx-tools/Betty.git
           cd Betty
-          ./install
+          ./install.sh
           cd ..
           git clone https://github.com/${{ github.repository }}.git ${{ github.actor }}
           git checkout ${{ github.event.pull_request.head.ref }}
