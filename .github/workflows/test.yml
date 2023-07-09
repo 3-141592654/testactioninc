@@ -1,0 +1,35 @@
+name: Pull Request and Push Workflow
+
+on:
+  pull_request:
+    types:
+      - opened
+      - closed
+  push:
+    branches:
+      - main
+
+jobs:
+  pr-opened-job:
+    name: Pull Request Opened Job
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Opened Action
+        run: echo "Pull Request opened action"
+
+  pr-merged-job:
+    name: Pull Request Merged Job
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Merged Action
+        run: echo "Pull Request merged action"
+
+  push-job:
+    name: Push Job
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push Action
+        run: echo "Push action"
