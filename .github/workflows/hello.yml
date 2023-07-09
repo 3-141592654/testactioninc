@@ -18,7 +18,7 @@ jobs:
           cd Betty
           sudo ./install.sh
           cd ..
-          git clone ${{ github.repositoryUrl }} ${{ github.actor }}
+          git clone https://github.com/${{ github.repository }} ${{ github.actor }}
   list:
     needs: run-style
     runs-on: ubuntu-latest
