@@ -1,6 +1,7 @@
 name: Pull Request and Push Workflow
 
 on:
+  workflow_dispatch:
   pull_request:
     types:
       - opened
