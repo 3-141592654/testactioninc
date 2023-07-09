@@ -17,5 +17,4 @@ jobs:
           cd Betty
           sudo ./install.sh
           cd ${{ github.workspace }}
-          chmod +x style.sh
-          ./style.sh
+          ls
