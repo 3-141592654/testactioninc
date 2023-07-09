@@ -26,6 +26,7 @@ jobs:
           betty *
           pwd
       - name: Check Pr Style
-        run: | 
+        run: |
+          ls
           pwd 
         
