@@ -5,14 +5,16 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   run-style:
-    name: Run Style
+    name: Check Style
     runs-on: ubuntu-latest
     steps:
-      - name: Build Betty
-        id: build-betty
+      - name: Check Style
         run: |
           git clone https://github.com/alx-tools/Betty
           cd Betty
@@ -22,3 +24,5 @@ jobs:
           echo ${{ github.actor }}
           cd ${{ github.actor }}
           betty *
+      - name: Dump Github context
+        run: echo '${{ toJSON(github.event) }}' | jq
