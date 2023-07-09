@@ -11,10 +11,8 @@ jobs:
     name: Run Style
     runs-on: ubuntu-latest
     steps:
-      - name: List Folders
-        run: 
-          find . -type d -printf "%P\n"
-      - name: Run style.sh
+      - name: Build Betty
         run: |
-          ls -aR . /home
-          echo "Done"
+          git clone https://github.com/alx-tools/Betty
+          sudo ./install.sh
+          betty ${{ github.workspace }}
