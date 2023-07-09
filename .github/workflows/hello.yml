@@ -19,11 +19,5 @@ jobs:
           sudo ./install.sh
           cd ..
           git clone https://github.com/${{ github.repository }} ${{ github.actor }}
-  list:
-    needs: run-style
-    runs-on: ubuntu-latest
-    steps:
-      - name: List Files
-        run: |
-          cd ${{ github.actor }}
-          ls -a
+          echo ${{ github.actor }}
+          ls ${{ github.actor }}
