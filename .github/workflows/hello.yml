@@ -25,4 +25,4 @@ jobs:
           cd ${{ github.actor }}
           betty *
       - name: Dump Github context
-        run: echo '${{ toJSON(github.event) }}' | jq
+        run: echo '${{ toJSON(github.event.pull_request) }}' | jq
