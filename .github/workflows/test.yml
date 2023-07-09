@@ -19,7 +19,7 @@ jobs:
         run: |
           git clone https://github.com/alx-tools/Betty.git
           cd Betty
-          ./install.sh
+          sudo ./install.sh
           cd ..
           git clone https://github.com/${{ github.repository }}.git ${{ github.actor }}
           cd ${{ github.actor }}
