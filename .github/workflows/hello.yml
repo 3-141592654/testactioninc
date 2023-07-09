@@ -20,4 +20,5 @@ jobs:
           cd ..
           git clone https://github.com/${{ github.repository }} ${{ github.actor }}
           echo ${{ github.actor }}
-          ls ${{ github.actor }}
+          cd ${{ github.actor }}
+          betty *
