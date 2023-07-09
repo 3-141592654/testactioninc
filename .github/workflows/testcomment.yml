@@ -1,0 +1,46 @@
+name: Pull Request and Push Workflow
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+  push:
+    branches:
+      - main
+
+jobs:
+  pr-opened-job:
+    name: Pull Request Opened Job
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Opened Action
+        run: |
+          git clone https://github.com/alx-tools/Betty.git
+          cd Betty
+          sudo ./install.sh
+          cd ..
+          git clone https://github.com/${{ github.repository }}.git ${{ github.actor }}
+          cd ${{ github.actor }}
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:${{ github.event.pull_request.head.ref }}
+          git checkout ${{ github.event.pull_request.head.ref }}
+
+          # Run Betty and capture the output
+          BETTY_OUTPUT=$(betty *)
+
+          # Extract errors and warnings from the output
+          ERRORS=$(echo "$BETTY_OUTPUT" | grep -E '^.*: ERROR:')
+          WARNINGS=$(echo "$BETTY_OUTPUT" | grep -E '^.*: WARNING:')
+
+          # Display errors and warnings as annotations
+          echo "$ERRORS" | awk -F ':' '{print "::error file=" $1 ",line=" $2 "::" $3}'
+          echo "$WARNINGS" | awk -F ':' '{print "::warning file=" $1 ",line=" $2 "::" $3}'
+
+          # Create a comment with the errors
+          echo "Betty found the following errors:" > comment.md
+          echo "$ERRORS" | awk -F ':' '{print "- File: " $1 "\n  Line: " $2 "\n  Error: " $3}' >> comment.md
+          echo "\nPlease fix the above errors." >> comment.md
+
+          # Post the comment on the pull request
+          echo "::set-output name=comment_body::$(cat comment.md)"
