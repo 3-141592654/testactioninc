@@ -16,4 +16,5 @@ jobs:
           git clone https://github.com/alx-tools/Betty
           cd Betty
           sudo ./install.sh
-          betty ${{ github.workspace }}
+          cd ${{ github.workspace }}
+          betty *.c
